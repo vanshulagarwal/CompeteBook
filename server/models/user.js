@@ -53,6 +53,12 @@ const userSchema = new Schema({
       ref: "User",
     },
   ],
+  requests:[
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Request",
+    },
+  ]
 });
 
 userSchema.methods.getJWTToken = function() {
