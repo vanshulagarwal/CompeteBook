@@ -1,5 +1,4 @@
-const User=require('../models/user.js');
-const catchAsync = require('../utils/catchAsync.js');
+const User = require('../models/user.js');
 const ErrorHand = require('../utils/errorHand.js');
 const sendjwtToken = require('../utils/sendjwtToken');
 const bcrypt = require('bcrypt');
@@ -7,7 +6,7 @@ const bcrypt = require('bcrypt');
 
 
 module.exports.register = async (req, res) => {
-       const { username,name, email, password } = req.body;
+    const { username, name, email, password } = req.body;
 
     const foundUser = await User.findOne({ email: email });
 
@@ -27,56 +26,56 @@ module.exports.register = async (req, res) => {
     });
     await user.save();
 
-    sendjwtToken(user,201,res);
-  
-   
-   
-  };
-  
- 
-  module.exports.login =async (req, res, next) => {
+    sendjwtToken(user, 201, res);
+
+
+
+};
+
+
+module.exports.login = async (req, res, next) => {
     const { email, password } = req.body;
 
     const user = await User.findAndValidate(email, password);
 
     if (!user) {
-        return next(new ErrorHand("Invalid email or password",404));
+        return next(new ErrorHand("Invalid email or password", 404));
     }
 
-    sendjwtToken(user,200,res);
+    sendjwtToken(user, 200, res);
 }
 
-module.exports.logout=async(req,res,next)=>{
-    res.cookie("token",null,{
-        expires:new Date(Date.now()),
-        httpOnly:true,
+module.exports.logout = async (req, res, next) => {
+    res.cookie("token", null, {
+        expires: new Date(Date.now()),
+        httpOnly: true,
     });
     res.status(200).json({
-        status:true,
-        message:"Logged Out",
+        status: true,
+        message: "Logged Out",
     });
 }
 
 
-  module.exports.changePassword = async (req, res, next) => {
-    const { oldpw,newpw } = req.body;
+module.exports.changePassword = async (req, res, next) => {
+    const { oldpw, newpw } = req.body;
     //current logged in userdetails
     console.log(req.user);
-    
- 
-    const result = await bcrypt.compare(oldpw , req.user.password);
-    if(!result){
-        return next(new ErrorHand("Password incorrect",401));
-    }else{
+
+
+    const result = await bcrypt.compare(oldpw, req.user.password);
+    if (!result) {
+        return next(new ErrorHand("Password incorrect", 401));
+    } else {
         const hash = await bcrypt.hash(newpw, 12);
-        await User.findOneAndUpdate({username:req.user.username},{password:hash});
+        await User.findOneAndUpdate({ username: req.user.username }, { password: hash });
         res.status(200).json({
-            status:true,
-            message:"Password successfully changed",
+            status: true,
+            message: "Password successfully changed",
         })
     }
-    
-  };
+
+};
 //   module.exports.forgotPassword =catchAsync( async (req, res) => {
 //     const { oldpw,newpw } = req.body;
 //     //current logged in userdetails
@@ -88,5 +87,14 @@ module.exports.logout=async(req,res,next)=>{
 //         const hash = await bcrypt.hash(newpw, 12);
 //         await User.findOneAndUpdate({password:hash});
 //     }
-    
+
 //   });
+
+module.exports.setUsername = async (req, res, next) => {
+    req.user = await User.findOneAndUpdate({ username: req.user.username }, { ...req.body }, { new: true });
+    res.status(200).json({
+        status: true,
+        message: "Username updated",
+        user: req.user,
+    })
+}

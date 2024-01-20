@@ -4,11 +4,11 @@ const axios = require('axios');
 
 module.exports.getDetails = async (req, res, next) => {
     const { platform } = req.params;
-    const username = 'vanshulagarwal'
 
 
     if (platform == 'codeforces') {
         try {
+            const username = req.user.cf;
             async function postData(url = "", data = {}) {
                 const response = await fetch(url);
                 return response.json();
@@ -45,6 +45,10 @@ module.exports.getDetails = async (req, res, next) => {
             });
         } catch (err) {
             console.log(err);
+            res.status(500).json({
+                status: false,
+                error: err,
+            })
         }
 
     }
@@ -77,7 +81,7 @@ module.exports.getDetails = async (req, res, next) => {
                 }
               }
             `;
-            let username = 'inkover_19';
+            const username = req.user.lc;
             fetch('https://leetcode.com/graphql', {
                 method: 'POST',
                 headers: {
@@ -89,7 +93,7 @@ module.exports.getDetails = async (req, res, next) => {
                 .then(result => result.json())
                 .then(data => {
                     if (data.errors) {
-                        res.status(200).json({
+                        res.status(500).json({
                             status: false,
                             data
                         });
@@ -110,7 +114,10 @@ module.exports.getDetails = async (req, res, next) => {
                 })
                 .catch(err => {
                     console.error('Error', err);
-                    res.send(err);
+                    res.status(500).json({
+                        status: false,
+                        err
+                    });
                 });
         }
         catch (err) {
@@ -118,7 +125,7 @@ module.exports.getDetails = async (req, res, next) => {
         }
     }
     else if (platform == 'codechef') {
-        let username = 'vanshulagarwal'
+        const username = req.user.cc;
         try {
             let data = await axios.get(`https://www.codechef.com/users/${username}`);
             let dom = new JSDOM(data.data);
@@ -136,7 +143,10 @@ module.exports.getDetails = async (req, res, next) => {
                 result
             });
         } catch (err) {
-            res.send({ success: false, error: err });
+            res.status(500).json({
+                success: false,
+                error: err
+            });
         }
     }
     // else if (platform == 'hacckerrank') { }
@@ -145,7 +155,7 @@ module.exports.getDetails = async (req, res, next) => {
     // dibyasundarroy
     // }
     else {
-        res.status(200).json({
+        res.status(500).json({
             status: false,
         })
     }
