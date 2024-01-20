@@ -4,6 +4,7 @@ if (process.env.NODE_ENV !== "production") {
 
 const express = require('express');
 const mongoose = require('mongoose');
+const cookieParser=require('cookie-parser');
 const app = express();
 
 const userRoutes = require('./routes/user');
@@ -22,9 +23,14 @@ mongoose.connect(dbUrl)
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cookieParser());
 
 
 app.use('/api/v1', userRoutes);
+
+app.use((err,req,res,next)=>{
+    console.log(err);
+})
 
 const port = process.env.PORT;
 app.listen(port, () => {

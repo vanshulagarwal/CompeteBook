@@ -1,4 +1,7 @@
 const mongoose = require("mongoose");
+const bcrypt=require('bcrypt');
+const jwt=require('jsonwebtoken');
+
 
 const Schema = mongoose.Schema;
 
@@ -20,7 +23,6 @@ const userSchema = new Schema({
   password: {
     type: String,
     required: [true, "Password is required"],
-    select: false,
   },
   lc: {
     type: String,
@@ -52,4 +54,22 @@ const userSchema = new Schema({
     },
   ],
 });
-module.exports.User = mongoose.model("User", userSchema);
+
+userSchema.methods.getJWTToken = function() {
+    return jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
+        expiresIn: process.env.JWT_EXPIRE,
+    });
+}
+
+userSchema.statics.findAndValidate = async function (email, password) {
+    const foundUser = await this.findOne({ email }).select("+password");
+    //if a user is found, this means that the username is already in use
+    if (!foundUser) return false;
+
+    //if username is unique, then we will verify the password
+    const isValid = await bcrypt.compare(password, foundUser.password);
+    return isValid ? foundUser : false;
+}
+
+const User = mongoose.model("User", userSchema);
+module.exports=User;
