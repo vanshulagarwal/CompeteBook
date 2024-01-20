@@ -4,11 +4,15 @@ import Login from './Pages/login/Login'
 import Footer from './components/Footer/Footer'
 import Home from './Pages/Home/Home'
 import SetUsername from './Pages/SetUsername/SetUsername'
+import { ToastContainer } from 'react-toastify'
+import Navbar from './components/Navbar/Navbar'
+
 // import Leaderboard from './Pages/Leaderboard/Leaderboard'
 const Layout = () => {
   return (
     <div className='app'>
-      {/* <div>navbar</div> */}
+      <ToastContainer autoClose={3000} draggablePercent={50} limit={3} />
+      <Navbar />
       <Outlet />
       <Footer />
     </div>

@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import "./Login.scss";
-// import usePostFetch from "../../hooks/usePostFetch";
-// import { useDispatch, useSelector } from "react-redux";
-// import { removeAuth, setAuth } from "../../redux/authReducer";
-// import { useNavigate } from 'react-router-dom';
+import usePostFetch from "../../hooks/usePostFetch";
+import { useDispatch, useSelector } from "react-redux";
+import { removeAuth, setAuth } from "../../redux/authReducer";
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 const LoginPage = () => {
-    // const navigate = useNavigate();
-    // const dispatch = useDispatch();
-    // const auth = useSelector(state => state.auth.auth);
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const auth = useSelector(state => state.auth.auth);
 
     const [type, setType] = useState("signIn");
     const handleOnClick = str => {
@@ -26,6 +26,7 @@ const LoginPage = () => {
     const [registerState, setRegisterState] = useState({
         name: "",
         email: "",
+        username: "",
         password: ""
     });
 
@@ -40,8 +41,8 @@ const LoginPage = () => {
     };
 
     const validateRegisterForm = () => {
-        if (!registerState.name || !registerState.email || !registerState.password) {
-            toast.error("Name, email, and password are required", {
+        if (!registerState.name || !registerState.email || !registerState.password || !registerState.username) {
+            toast.error("Name, email, username, and password are required", {
                 position: toast.POSITION.TOP_LEFT
             });
             return false;
@@ -85,7 +86,8 @@ const LoginPage = () => {
             const data = await usePostFetch('/register', {
                 email: registerState.email,
                 password: registerState.password,
-                name: registerState.name
+                name: registerState.name,
+                username: registerState.username
             });
 
             if (data.data && data.data.user) {
@@ -113,6 +115,7 @@ const LoginPage = () => {
                     <form>
                         <h1>Create Account</h1>
                         <input type="text" name="name" value={registerState.name} onChange={e => setRegisterState({ ...registerState, name: e.target.value })} placeholder="Name" />
+                        <input type="text" name="username" value={registerState.username} onChange={e => setRegisterState({ ...registerState, username: e.target.value })} placeholder="Username" />
                         <input type="email" name="email" value={registerState.email} onChange={e => setRegisterState({ ...registerState, email: e.target.value })} placeholder="Email" />
                         <input type="password" name="password" value={registerState.password} onChange={e => setRegisterState({ ...registerState, password: e.target.value })} placeholder="Password" />
                         <button onClick={registerHandle}>Register</button>

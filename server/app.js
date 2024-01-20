@@ -4,8 +4,9 @@ if (process.env.NODE_ENV !== "production") {
 
 const express = require('express');
 const mongoose = require('mongoose');
-const cookieParser=require('cookie-parser');
+const cookieParser = require('cookie-parser');
 const app = express();
+const cors = require('cors');
 
 const userRoutes = require('./routes/user');
 const detailsRoutes = require('./routes/details');
@@ -26,6 +27,7 @@ mongoose.connect(dbUrl)
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
+app.use(cors({ credentials: true, origin: "http://localhost:5173" }));
 
 
 app.use('/api/v1', userRoutes);
