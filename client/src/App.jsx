@@ -1,12 +1,14 @@
 import './App.css'
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom'
-
+import Login from './Pages/Login/Login'
+import Footer from './components/Footer/Footer'
+import Home from './Pages/Home/Home'
 const Layout = () => {
   return (
     <div className='app'>
-      <div>navbar</div>
+      {/* <div>navbar</div> */}
       <Outlet />
-      <div>footer</div>
+      <Footer />
     </div>
   )
 }
@@ -18,7 +20,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <p>home</p>
+        element: <Home />
       },
       {
         path: "/details/:platform",
@@ -30,7 +32,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/login",
-        element: <p>login</p>
+        element: <Login />
       },
     ]
   },
