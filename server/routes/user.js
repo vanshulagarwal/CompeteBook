@@ -15,6 +15,6 @@ router.route('/register').post(catchAsync(register));
 router.route('/logout').get(catchAsync(logout));
 router.route('/changepw')
             // .get(changePassword)//changepasswordform
-            .post(isLoggedIn,catchAsync(changePassword));
+            .post(catchAsync(isLoggedIn),catchAsync(changePassword));
 
 module.exports = router;

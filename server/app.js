@@ -9,6 +9,7 @@ const app = express();
 
 const userRoutes = require('./routes/user');
 const detailsRoutes = require('./routes/details');
+const error = require('./middlewares/error');
 
 const dbUrl = process.env.ATLAS_URL;
 mongoose.connect(dbUrl)
@@ -30,9 +31,7 @@ app.use(cookieParser());
 app.use('/api/v1', userRoutes);
 app.use('/api/v1/details', detailsRoutes);
 
-app.use((err,req,res,next)=>{
-    console.log(err);
-})
+app.use(error);
 
 const port = process.env.PORT;
 app.listen(port, () => {

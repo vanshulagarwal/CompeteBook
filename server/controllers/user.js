@@ -1,5 +1,6 @@
 const User=require('../models/user.js');
 const catchAsync = require('../utils/catchAsync.js');
+const ErrorHand = require('../utils/errorHand.js');
 const sendjwtToken = require('../utils/sendjwtToken');
 const bcrypt = require('bcrypt');
 
@@ -57,7 +58,7 @@ module.exports.logout=async(req,res,next)=>{
 }
 
 
-  module.exports.changePassword = async (req, res) => {
+  module.exports.changePassword = async (req, res, next) => {
     const { oldpw,newpw } = req.body;
     //current logged in userdetails
     console.log(req.user);
@@ -65,10 +66,14 @@ module.exports.logout=async(req,res,next)=>{
  
     const result = await bcrypt.compare(oldpw , req.user.password);
     if(!result){
-        res.status(400).send("old passwords does not match!!"); 
+        return next(new ErrorHand("Password incorrect",401));
     }else{
         const hash = await bcrypt.hash(newpw, 12);
         await User.findOneAndUpdate({username:req.user.username},{password:hash});
+        res.status(200).json({
+            status:true,
+            message:"Password successfully changed",
+        })
     }
     
   };
