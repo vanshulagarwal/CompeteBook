@@ -53,10 +53,10 @@ const userSchema = new Schema({
       ref: "User",
     },
   ],
-  requests:[
+  fRequests:[
     {
       type: Schema.Types.ObjectId,
-      ref: "Request",
+      ref: "FRequest",
     },
   ]
 });
