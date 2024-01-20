@@ -1,6 +1,6 @@
 import './App.css'
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom'
-import Login from './Pages/Login/Login'
+import Login from './Pages/login/Login'
 import Footer from './components/Footer/Footer'
 import Home from './Pages/Home/Home'
 import SetUsername from './Pages/SetUsername/SetUsername'
