@@ -3,6 +3,8 @@ import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom'
 import Login from './Pages/Login/Login'
 import Footer from './components/Footer/Footer'
 import Home from './Pages/Home/Home'
+import SetUsername from './Pages/SetUsername/SetUsername'
+// import Leaderboard from './Pages/Leaderboard/Leaderboard'
 const Layout = () => {
   return (
     <div className='app'>
@@ -26,13 +28,17 @@ const router = createBrowserRouter([
         path: "/details/:platform",
         element: <p>details</p>
       },
-      {
-        path: "/leaderboard",
-        element: <p>leaderboard</p>
-      },
+      // {
+      //   path: "/leaderboard",
+      //   element: <Leaderboard />
+      // },
       {
         path: "/login",
         element: <Login />
+      },
+      {
+        path: "/setusernames",
+        element: <SetUsername />
       },
     ]
   },

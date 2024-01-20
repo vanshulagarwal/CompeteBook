@@ -35,10 +35,7 @@ const Navbar = () => {
                     <span>Friends</span>
                 </div>
             </div>
-            <div className="content-below-options">
-                {/* Content below the options goes here */}
-                <p>Additional content goes here...</p>
-            </div>
+
         </nav>
     );
 };

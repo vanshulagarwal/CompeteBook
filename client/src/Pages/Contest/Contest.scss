@@ -1,0 +1,51 @@
+/* ContestPage.css */
+
+.contest-page {
+    text-align: center;
+    padding: 20px;
+}
+
+.buttons-container {
+    margin: 20px 0;
+}
+
+.contest-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.contest-item {
+    border: 2px solid green;
+    /* Default border color for attempted contests */
+    background-color: purple;
+    /* Default background color for upcoming contests */
+    color: white;
+    padding: 10px;
+    margin: 10px;
+    width: 250px;
+    /* Adjust width based on your design */
+}
+
+.contest-item.attempted {
+    border: 2px solid green;
+    /* Green border for attempted contests */
+    background-color: red;
+    /* Red background for not attempted contests */
+}
+
+/* Media queries for responsiveness */
+
+@media (max-width: 768px) {
+    .contest-item {
+        width: 100%;
+        /* Set full width on smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .buttons-container {
+        flex-direction: column;
+        /* Stack buttons vertically on smaller screens */
+    }
+}

@@ -1,5 +1,6 @@
-.categories {
+/* Home.css */
 
+.categories {
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -13,18 +14,12 @@
 .category-4,
 .category-5 {
     display: flex;
-    justify-content: space-around;
     align-items: center;
-    flex: 1;
-    width: 70%;
-    height: 87px;
-    /* box-sizing: border-box; */
+    width: 90%;
     border: 1px solid black;
     border-radius: 30px;
     background-color: rgba(123, 8, 83, 0.7);
 }
-
-
 
 .category-1-left,
 .category-2-left,
@@ -33,8 +28,10 @@
 .category-5-left {
     display: flex;
     flex-direction: column;
+    width: 100%;
+    /* Full width for mobile screens */
+    text-align: center;
 }
-
 
 .category-1-left-content,
 .category-2-left-content,
@@ -46,39 +43,63 @@
     background-color: white;
     border-radius: 50px;
     text-align: center;
-    padding: 0px 30px;
+    padding: 10px 20px;
     color: #8518ff;
-    font-size: 1.2rem;
-    font-weight: 400;
-    ;
+    font-size: 1rem;
 }
 
-.category-1-right .img-photo {
-    width: 200px;
-    height: 150px;
-
+.category-1-right,
+.category-2-right,
+.category-3-right,
+.category-4-right,
+.category-5-right {
+    display: flex;
+    justify-content: flex-end;
+    /* Align to the right for desktop screens */
+    width: 100%;
+    /* Full width for mobile screens */
 }
 
-.category-2-right .img-photo {
-    width: 200px;
-    height: 150px;
-
-}
-
-.category-3-right .img-photo {
-    width: 200px;
-    height: 150px;
-
-}
-
-.category-4-right .img-photo {
-    width: 200px;
-    height: 150px;
-
-}
-
+.category-1-right .img-photo,
+.category-2-right .img-photo,
+.category-3-right .img-photo,
+.category-4-right .img-photo,
 .category-5-right .img-photo {
-    width: 200px;
-    height: 150px;
+    max-width: 200px;
+    /* Maximum width for mobile screens */
+    width: 100%;
+    /* Full width for mobile screens */
+    height: auto;
+}
 
+@media screen and (min-width: 576px) {
+    .categories {
+
+        .category-1,
+        .category-2,
+        .category-3,
+        .category-4,
+        .category-5 {
+            flex-direction: row;
+            /* Change back to row for larger screens */
+        }
+
+        .category-1-left,
+        .category-2-left,
+        .category-3-left,
+        .category-4-left,
+        .category-5-left {
+            width: 50%;
+            /* Adjusted width for desktop screens */
+        }
+
+        .category-1-right,
+        .category-2-right,
+        .category-3-right,
+        .category-4-right,
+        .category-5-right {
+            width: 50%;
+            /* Adjusted width for desktop screens */
+        }
+    }
 }
