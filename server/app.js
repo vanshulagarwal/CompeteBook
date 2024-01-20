@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 const app = express();
 
 const userRoutes = require('./routes/user');
+const detailsRoutes = require('./routes/details');
 
 const dbUrl = process.env.ATLAS_URL;
 mongoose.connect(dbUrl)
@@ -25,6 +26,7 @@ app.use(express.json());
 
 
 app.use('/api/v1', userRoutes);
+app.use('/api/v1/details', detailsRoutes);
 
 const port = process.env.PORT;
 app.listen(port, () => {
