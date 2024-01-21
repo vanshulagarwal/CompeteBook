@@ -1,9 +1,9 @@
-import React from "react";
+// import React from "react";
 import './Details.scss';
 import useFetch from "../../hooks/useFetch";
 
 const Details = () => {
-    const {platform}=
+    // const {platform}=
     const { data, loading, error } = useFetch("/details/codeforces");
     return (
         <div className="details">{

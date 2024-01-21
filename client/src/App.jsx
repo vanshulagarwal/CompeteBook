@@ -7,6 +7,7 @@ import SetUsername from './Pages/SetUsername/SetUsername'
 import { ToastContainer } from 'react-toastify'
 import Navbar from './components/Navbar/Navbar'
 import Details from './Pages/Details/Details'
+import Leaderboard from './Pages/Leaderboard/Leaderboard'
 
 // import Leaderboard from './Pages/Leaderboard/Leaderboard'
 const Layout = () => {
@@ -33,10 +34,10 @@ const router = createBrowserRouter([
         path: "/details/:platform",
         element: <Details/>
       },
-      // {
-      //   path: "/leaderboard",
-      //   element: <Leaderboard />
-      // },
+      {
+        path: "/leaderboard",
+        element: <Leaderboard />
+      },
       {
         path: "/login",
         element: <Login />

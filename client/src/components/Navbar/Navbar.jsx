@@ -26,6 +26,7 @@ const Navbar = () => {
                     <span className='text'>Search</span>
                 </div>
             </div>
+            {/* conditional rendering login and profile button */}
             <div className="navbar-right">
                 <div className="navbar-option">
                     <FaUser className='icon' />
