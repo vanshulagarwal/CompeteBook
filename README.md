@@ -193,8 +193,4 @@ Request :
     "contests_won": 3
     }
     ```
-Response :
 
-```
-Make sure to replace placeholder information such as `[Member 1]`, `[your_token_here]`, and actual API responses based on your implementation. Additionally, provide more details on request and response formats if needed.
-``` 
