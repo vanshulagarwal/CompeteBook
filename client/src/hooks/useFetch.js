@@ -10,8 +10,11 @@ const useFetch = (url) => {
         const fetchData = async () => {
             try {
                 setLoading(true);
-                const res = await makeRequest.get(url);
-                setData(res.data.products||res.data.product);
+                const res = await makeRequest.get(url,{
+                    withCredentials:true,
+                });
+                console.log(res.data.result);
+                setData(res.data.result);
             } catch (err) {
                 setError(true);
                 console.log(err);
