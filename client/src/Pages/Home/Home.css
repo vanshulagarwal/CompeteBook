@@ -18,7 +18,9 @@
     width: 90%;
     border: 1px solid black;
     border-radius: 30px;
-    background-color: rgba(123, 8, 83, 0.7);
+    background-color: #F4B393;
+    margin-top: 20px;
+
 }
 
 .category-1-left,
@@ -31,6 +33,10 @@
     width: 100%;
     /* Full width for mobile screens */
     text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    ;
 }
 
 .category-1-left-content,
@@ -43,9 +49,23 @@
     background-color: white;
     border-radius: 50px;
     text-align: center;
+    align-items: center;
     padding: 10px 20px;
     color: #8518ff;
-    font-size: 1rem;
+    font-size: 1.3rem;
+    width: 40%;
+}
+
+.category-1-left-content,
+.category-2-left-content,
+.category-3-left-content,
+.category-4-left-content,
+.category-5-left-content {
+    img {
+        width: 20px;
+        margin-left: 10px;
+
+    }
 }
 
 .category-1-right,
@@ -72,7 +92,7 @@
     height: auto;
 }
 
-@media screen and (min-width: 576px) {
+@media screen and (max-width: 701px) {
     .categories {
 
         .category-1,
@@ -89,7 +109,8 @@
         .category-3-left,
         .category-4-left,
         .category-5-left {
-            width: 50%;
+            width: 1000px;
+
             /* Adjusted width for desktop screens */
         }
 
@@ -98,7 +119,7 @@
         .category-3-right,
         .category-4-right,
         .category-5-right {
-            width: 50%;
+            width: 60%;
             /* Adjusted width for desktop screens */
         }
     }

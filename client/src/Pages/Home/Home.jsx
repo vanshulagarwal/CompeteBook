@@ -12,9 +12,8 @@ const Home = () => {
                             <h2>Codeforces</h2>
                         </div>
                         <div className='category-1-left-content'>
-                            <p>Codeforces</p>
-                            <img src={arrow} alt="" />
-                            <a href="/details/codeforces">here</a>
+                            <p>Get Started</p>
+                            <a href="/details/codeforces"><img src={arrow} alt="" /></a>
                         </div>
                     </div>
                     <div className="category-1-right">
@@ -24,12 +23,11 @@ const Home = () => {
                 <div className="category-2">
                     <div className="category-2-left">
                         <div>
-                            <h2>Platform:-</h2>
+                            <h2>Leetcode</h2>
                         </div>
                         <div className="category-2-left-content">
-                            <p>Leetcode</p>
-                            <img src={arrow} alt="" />
-                            <a href="/details/codechef">here</a>
+                            <p>Get Started</p>
+                            <a href="/details/leetcode"><img src={arrow} alt="" /></a>
                         </div>
                     </div>
                     <div className="category-2-right">
@@ -39,12 +37,11 @@ const Home = () => {
                 <div className="category-3">
                     <div className="category-3-left">
                         <div>
-                            <h2>Platform</h2>
+                            <h2>Codechef</h2>
                         </div>
                         <div className="category-3-left-content">
-                            <p>Codechef</p>
-                            <img src={arrow} alt="" />
-                            <a href="/details/leetcode">here</a>
+                            <p>Get Started</p>
+                            <a href="/details/codechef"><img src={arrow} alt="" /></a>
                         </div>
                     </div>
                     <div className="category-3-right">
